@@ -1001,6 +1001,7 @@ const puzzleInput = [
   { strength: [8, 9], letter: "v", password: "vvvvvvvvvg" },
 ];
 
+// Part 1
 const validPasswords = puzzleInput.filter(function (item) {
   const min = item.strength[0];
   const max = item.strength[1];
@@ -1020,4 +1021,26 @@ const validPasswords = puzzleInput.filter(function (item) {
   }
 });
 
-console.log(validPasswords.length);
+console.log("Part 1: " + validPasswords.length);
+
+// Part 2
+const newValidPasswords = puzzleInput.filter(function (item) {
+  const pos1 = item.strength[0] - 1;
+  const pos2 = item.strength[1] - 1;
+
+  if (
+    item.password[pos1] === item.letter ||
+    item.password[pos2] === item.letter
+  ) {
+    if (
+      item.password[pos1] === item.letter &&
+      item.password[pos2] === item.letter
+    ) {
+      return;
+    }
+
+    return item;
+  }
+});
+
+console.log("Part 2: " + newValidPasswords.length);
