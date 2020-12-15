@@ -1021,7 +1021,7 @@ const validPasswords = puzzleInput.filter(function (item) {
   }
 });
 
-console.log("Part 1: " + validPasswords.length);
+const part1 = validPasswords.length;
 
 // Part 2
 const newValidPasswords = puzzleInput.filter(function (item) {
@@ -1043,4 +1043,7 @@ const newValidPasswords = puzzleInput.filter(function (item) {
   }
 });
 
-console.log("Part 2: " + newValidPasswords.length);
+const part2 = newValidPasswords.length;
+
+const app = document.querySelector("#app");
+app.textContent = `Part 1: ${part1}, Part 2: ${part2}`;

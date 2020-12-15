@@ -212,6 +212,8 @@ for (let i = 0; i < numbers.length; i++) {
   }
 }
 
+console.log(part1);
+
 let part2;
 
 ////// Part 2
@@ -225,4 +227,5 @@ for (let i = 0; i < numbers.length; i++) {
   }
 }
 
-console.log(`Part 1: ${part1}, Part 2: ${part2}`);
+const app = document.querySelector("#app");
+app.textContent = `Part 1: ${part1}, Part 2: ${part2}`;

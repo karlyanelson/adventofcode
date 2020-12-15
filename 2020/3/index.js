@@ -326,7 +326,7 @@ const puzzleInput = [
 
 // Part 1
 
-(function () {
+function part1() {
   let posX = 0;
 
   let treeCount = 0;
@@ -344,11 +344,12 @@ const puzzleInput = [
     posX = posX + 3;
   });
 
-  console.log("Part 1: " + treeCount);
-})();
+  return treeCount;
+}
 
 // Part 2
-(function () {
+
+function part2() {
   function treeCounter(right, down) {
     let posX = 0;
 
@@ -376,12 +377,14 @@ const puzzleInput = [
     return treeCount;
   }
 
-  console.log(
-    "Part 2: " +
-      treeCounter(1, 1) *
-        treeCounter(3, 1) *
-        treeCounter(5, 1) *
-        treeCounter(7, 1) *
-        treeCounter(1, 2)
+  return (
+    treeCounter(1, 1) *
+    treeCounter(3, 1) *
+    treeCounter(5, 1) *
+    treeCounter(7, 1) *
+    treeCounter(1, 2)
   );
-})();
+}
+
+const app = document.querySelector("#app");
+app.textContent = `Part 1: ${part1()}, Part 2: ${part2()}`;

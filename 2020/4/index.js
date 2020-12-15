@@ -1138,24 +1138,29 @@ ecl:brn eyr:2026 iyr:2017 hgt:75in
 pid:745302991 byr:1969 hcl:#7394c7
 `;
 
-const formattedPuzzleInput = puzzleInput.split(/\n+\s/g);
+function part1() {
+  const formattedPuzzleInput = puzzleInput.split(/\n+\s/g);
 
-const requiredFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
+  const requiredFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 
-let validPassports = 0;
+  let validPassports = 0;
 
-formattedPuzzleInput.forEach(function (item) {
-  let validFields = 0;
+  formattedPuzzleInput.forEach(function (item) {
+    let validFields = 0;
 
-  requiredFields.forEach(function (field) {
-    if (item.includes(field)) {
-      validFields++;
+    requiredFields.forEach(function (field) {
+      if (item.includes(field)) {
+        validFields++;
+      }
+    });
+
+    if (validFields === requiredFields.length) {
+      validPassports++;
     }
   });
 
-  if (validFields === requiredFields.length) {
-    validPassports++;
-  }
-});
+  return validPassports;
+}
 
-console.log(validPassports);
+const app = document.querySelector("#app");
+app.textContent = `Part 1: ${part1()}`;
