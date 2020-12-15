@@ -354,8 +354,6 @@ const puzzleInput = [
 
     let treeCount = 0;
 
-    let rowCount = 0;
-
     const filteredPuzzleInput = puzzleInput.filter((row, index) => {
       if (index % down === 0) {
         return row;
