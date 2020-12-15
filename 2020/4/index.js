@@ -1162,5 +1162,35 @@ function part1() {
   return validPassports;
 }
 
+function part2() {
+  const formattedPuzzleInput = puzzleInput
+    .split(/\n+\s/g)
+    .map(function (puzzleString) {
+      const newPuzzleStringArray = puzzleString.split(/[\n\s]+/g);
+
+      const filteredPuzzleStringArray = newPuzzleStringArray.filter(function (
+        item
+      ) {
+        if ((item !== "\n") & (item !== " ")) {
+          return item;
+        }
+      });
+
+      const passportObject = filteredPuzzleStringArray.map(function (string) {
+        const array = string.split(":");
+        let obj = {};
+        obj[array[0]] = array[1];
+
+        return obj;
+      });
+
+      return passportObject;
+    });
+
+  console.log(formattedPuzzleInput);
+}
+
+part2();
+
 const app = document.querySelector("#app");
 app.textContent = `Part 1: ${part1()}`;
