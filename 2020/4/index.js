@@ -1176,21 +1176,91 @@ function part2() {
         }
       });
 
-      const passportObject = filteredPuzzleStringArray.map(function (string) {
-        const array = string.split(":");
-        let obj = {};
-        obj[array[0]] = array[1];
+      let passportObject = {};
 
-        return obj;
+      filteredPuzzleStringArray.forEach(function (string) {
+        const array = string.split(":");
+        passportObject[array[0]] = array[1];
       });
 
       return passportObject;
     });
 
-  console.log(formattedPuzzleInput);
+  let validPassports = 0;
+
+  // byr (Birth Year) - four digits; at least 1920 and at most 2002.
+  // iyr (Issue Year) - four digits; at least 2010 and at most 2020.
+  // eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
+  // hgt (Height) - a number followed by either cm or in:
+  // - If cm, the number must be at least 150 and at most 193.
+  // - If in, the number must be at least 59 and at most 76.
+  // hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
+  // ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
+  // pid (Passport ID) - a nine-digit number, including leading zeroes.
+
+  formattedPuzzleInput.forEach(function (passport) {
+    let validFields = 0;
+
+    if (
+      !passport.byr ||
+      !passport.iyr ||
+      !passport.eyr ||
+      !passport.hgt ||
+      !passport.hcl ||
+      !passport.ecl ||
+      !passport.pid
+    ) {
+      return;
+    }
+    if (parseInt(passport.byr) >= 1920 && parseInt(passport.byr) <= 2002) {
+      validFields++;
+    }
+
+    if (parseInt(passport.iyr) >= 2010 && parseInt(passport.iyr) <= 2020) {
+      validFields++;
+    }
+
+    if (parseInt(passport.eyr) >= 2020 && parseInt(passport.eyr) <= 2030) {
+      validFields++;
+    }
+
+    if (passport.hgt.includes("cm")) {
+      const height = passport.hgt.split("cm")[0];
+      if (parseInt(height) >= 150 && parseInt(height) <= 193) {
+        validFields++;
+      }
+    }
+
+    if (passport.hgt.includes("in")) {
+      const height = passport.hgt.split("in")[0];
+      if (parseInt(height) >= 59 && parseInt(height) <= 76) {
+        validFields++;
+      }
+    }
+
+    if (/^#[0-9a-f]{6}$/g.test(passport.hcl)) {
+      validFields++;
+    }
+
+    const validEyeColors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
+
+    if (validEyeColors.indexOf(passport.ecl) > -1) {
+      validFields++;
+    }
+
+    if (passport.pid.length === 9) {
+      validFields++;
+    }
+
+    if (validFields === 7) {
+      validPassports++;
+    }
+  });
+
+  return validPassports;
 }
 
 part2();
 
 const app = document.querySelector("#app");
-app.textContent = `Part 1: ${part1()}`;
+app.textContent = `Part 1: ${part1()}, Part 2: ${part2()}`;
