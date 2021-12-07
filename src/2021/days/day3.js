@@ -144,6 +144,7 @@ export const oxygenRate = (arr) => {
   return binaryToDecimal(oxygenBinary(arr));
 };
 export const co2Rate = (arr) => {
+  console.log("day 3 ran");
   return binaryToDecimal(co2Binary(arr));
 };
 

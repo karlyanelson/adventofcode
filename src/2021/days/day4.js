@@ -33,27 +33,24 @@ const data = {
 // part 1
 
 const matchNums = (arr) => {
-  // let matched = arr.boards;
+  let matched = arr.boards;
 
-  for (const num of data.nums) {
-    arr.boards.forEach((board, index) => {
-      board.forEach((row) => {});
-    });
-    // matched = matched.map((board) =>
-    //   board.map((row) =>
-    //     row.map((col) => {
-    //       if (col === num) {
-    //         return "matched";
-    //       } else {
-    //         return col;
-    //       }
-    //     })
-    //   )
-    // );
-  }
-  // console.log({ matched });
+  // for (const num of data.nums) {
+  //   matched = matched.map((board) =>
+  //     board.map((row) =>
+  //       row.map((col) => {
+  //         if (col === num || col.number === num) {
+  //           return { number: col, matched: true };
+  //         } else {
+  //           return { number: col, matched: false };
+  //         }
+  //       })
+  //     )
+  //   );
+  // }
+  console.log({ matched });
 
-  // return matched;
+  return matched;
 };
 
 export const getWinningBoard = (arr) => {
