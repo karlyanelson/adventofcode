@@ -1,4 +1,4 @@
-import { data } from "../../data/3";
+import { data } from "../data/3";
 
 const binaryToDecimal = (binary) => {
   const decimal = parseInt(binary, 2);

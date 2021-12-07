@@ -1,4 +1,4 @@
-import { data } from "../../data/1";
+import { data } from "../data/1";
 
 export const calculate1 = (arr) => {
   let increased = 0;

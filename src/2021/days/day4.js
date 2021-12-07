@@ -1,4 +1,4 @@
-// import { data } from "../../data/4";
+// import { data } from "../data/4";
 
 const data = {
   nums: [

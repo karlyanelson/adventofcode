@@ -1,4 +1,4 @@
-import { data } from "../../data/2";
+import { data } from "../data/2";
 
 // part 1
 
