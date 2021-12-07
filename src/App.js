@@ -6,7 +6,7 @@ import day3 from "./2021/days/day3";
 import day4 from "./2021/days/day4";
 import DayButton from "./DayButton";
 
-export default function App() {
+export function App() {
   const [answer, setAnswer] = useState(["no answer", "no answer"]);
   const [selectedDay, setSelectedDay] = useState(null);
 
