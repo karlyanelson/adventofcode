@@ -33,9 +33,6 @@ export const calculate2 = (arr) => {
   return calculate1(summedArr);
 };
 
-const part1 = calculate1(data);
-const part2 = calculate2(data);
-
-const answer = [part1, part2];
+const answer = () => [calculate1(data), calculate2(data)];
 
 export default answer;

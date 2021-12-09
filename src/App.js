@@ -51,12 +51,11 @@ export function App() {
 
       <div className="grid">
         {answers.map((day, index) => (
-          <div className="grid-item">
+          <div className="grid-item" key={`dayButton_${index}`}>
             <DayButton
-              key={`dayButton_${index}`}
               day={index + 1}
               onClick={() => {
-                setAnswer(day);
+                setAnswer(day());
                 setSelectedDay(index + 1);
               }}
             />
