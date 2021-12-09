@@ -32,34 +32,60 @@ const data = {
 
 // part 1
 
-const matchNums = (arr) => {
-  let matched = arr.boards;
+export const getWinningBoardAndNumber = (arr) => {
+  let boards = arr.boards.slice();
+  let winningBoard;
+  let winningNumber;
 
-  // for (const num of data.nums) {
-  //   matched = matched.map((board) =>
-  //     board.map((row) =>
-  //       row.map((col) => {
-  //         if (col === num || col.number === num) {
-  //           return { number: col, matched: true };
-  //         } else {
-  //           return { number: col, matched: false };
-  //         }
-  //       })
-  //     )
-  //   );
-  // }
-  console.log({ matched });
+  for (const [numIndex, num] of data.nums.entries()) {
+    if (winningBoard) {
+      break;
+    }
+    for (const [boardIndex, board] of boards.entries()) {
+      if (winningBoard) {
+        break;
+      }
+      for (const [rowIndex, row] of board.entries()) {
+        if (winningBoard) {
+          break;
+        }
+        /// TODO only checking rows, still need to check matching columns
 
-  return matched;
+        let matchedRows = row.filter((x) => x === "matched");
+
+        if (matchedRows.length === row.length) {
+          winningBoard = boardIndex;
+          winningNumber = data.nums[numIndex - 1];
+          break;
+        } else {
+          for (const [colIndex, col] of row.entries()) {
+            if (col === num) {
+              boards[boardIndex][rowIndex][colIndex] = "matched";
+            }
+          }
+        }
+      }
+    }
+  }
+  return {
+    boardIndex: winningBoard,
+    winningNum: winningNumber,
+    board: boards[winningBoard],
+  };
 };
 
-export const getWinningBoard = (arr) => {
-  matchNums(arr);
+export const winningBoardScore = (arr) => {
+  const { winningNum, board } = getWinningBoardAndNumber(arr);
+  console.log({ winningNum });
+  console.log({ board });
+  // TODO - sum unmatched numbers from winning board
+  // filter out 'matched' from arrays
+  // make into on big array of numbers
+  // array reduce to get the sum
 };
-
-export const winningBoardScore = (arr) => {};
 export const calculate1 = (arr) => {
-  getWinningBoard(arr);
+  // winningBoardScore * winningNum
+  winningBoardScore(arr);
 };
 
 // part 2

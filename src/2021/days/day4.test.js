@@ -1,5 +1,5 @@
 import {
-  getWinningBoard,
+  getWinningBoardAndNumber,
   winningBoardScore,
   calculate1,
   calculate2,
@@ -36,10 +36,16 @@ const data = {
 };
 
 describe.only("part 1", () => {
-  test.only("calculate1", () => {
-    expect(getWinningBoard(data)).toBe(2); // the third board
-    // expect(winningBoardScore(data)).toBe(188);
-    // expect(calculate1(data)).toBe(4512);
+  test("getWinningBoardAndNumber", () => {
+    const { boardIndex, winningNum } = getWinningBoardAndNumber(data);
+    expect(boardIndex).toEqual(2); // the third board
+    expect(winningNum).toEqual(24);
+  });
+  test.only("winningBoardScore", () => {
+    expect(winningBoardScore(data)).toBe(188);
+  });
+  test("calculate1", () => {
+    expect(calculate1(data)).toBe(4512);
   });
 });
 
