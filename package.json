@@ -9,6 +9,7 @@
     "dev": "parcel",
     "start": "parcel",
     "build": "parcel build",
+    "clean": "rm -rf dist && rm -rf .parcel-cache",
     "test": "jest"
   },
   "repository": {

@@ -37,14 +37,17 @@ const data = {
 
 describe.only("part 1", () => {
   test("getWinningBoardAndNumber", () => {
-    const { boardIndex, winningNum } = getWinningBoardAndNumber(data);
+    console.log("getWinningBoardAndNumber test");
+    const { boardIndex, winningNumber } = getWinningBoardAndNumber(data);
     expect(boardIndex).toEqual(2); // the third board
-    expect(winningNum).toEqual(24);
+    expect(winningNumber).toEqual(24);
   });
-  test.only("winningBoardScore", () => {
-    expect(winningBoardScore(data)).toBe(188);
+  test("winningBoardScore", () => {
+    console.log("winningBoardScore test");
+    expect(winningBoardScore(data).boardScore).toBe(188);
   });
   test("calculate1", () => {
+    console.log("calculate1 test");
     expect(calculate1(data)).toBe(4512);
   });
 });
