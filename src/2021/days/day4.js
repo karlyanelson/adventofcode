@@ -39,8 +39,7 @@ export const getWinningBoardAndNumber = (arr) => {
   let nums = Array.from(copy.nums);
   let winningBoard;
   let winningNumber;
-
-  console.log("boards[2][0][0]", boards[2][0][0]);
+  let matchedColumns = {};
 
   for (const [numIndex, num] of nums.entries()) {
     if (winningBoard) {
@@ -50,23 +49,36 @@ export const getWinningBoardAndNumber = (arr) => {
       if (winningBoard) {
         break;
       }
+
       for (const [rowIndex, row] of board.entries()) {
         if (winningBoard) {
           break;
         }
-        /// TODO only checking rows, still need to check matching columns
-
         let matchedRows = row.filter((x) => x === "matched");
 
         if (matchedRows.length === row.length) {
           winningBoard = boardIndex;
           winningNumber = nums[numIndex - 1];
-          console.log({ num });
           break;
         } else {
           for (const [colIndex, col] of row.entries()) {
             if (col === num) {
+              if (!matchedColumns[boardIndex]) {
+                matchedColumns[boardIndex] = {};
+              }
+              if (!matchedColumns[boardIndex][colIndex]) {
+                matchedColumns[boardIndex][colIndex] = [];
+              }
+              matchedColumns[boardIndex][colIndex].push("matched");
               boards[boardIndex][rowIndex][colIndex] = "matched";
+
+              if (
+                matchedColumns[boardIndex][colIndex].length === board.length
+              ) {
+                winningBoard = boardIndex;
+                winningNumber = nums[numIndex];
+                break;
+              }
             }
           }
         }
