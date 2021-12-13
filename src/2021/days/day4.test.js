@@ -2,6 +2,7 @@ import {
   getWinningBoardAndNumber,
   winningBoardScore,
   calculate1,
+  getLastWinningBoardAndNumber,
   calculate2,
 } from "./day4";
 
@@ -35,22 +36,22 @@ const data = {
   ],
 };
 
-describe.only("part 1", () => {
+describe("part 1", () => {
   test("getWinningBoardAndNumber when row is winner", () => {
     const { boardIndex, winningNumber } = getWinningBoardAndNumber(data);
-    expect(boardIndex).toEqual(2); // the third board
+    expect(boardIndex).toEqual(2);
     expect(winningNumber).toEqual(24);
   });
   test("winningBoardScore", () => {
-    console.log("winningBoardScore test");
-    expect(winningBoardScore(data).boardScore).toBe(188);
+    expect(winningBoardScore(data, getWinningBoardAndNumber).boardScore).toBe(
+      188
+    );
   });
   test("calculate1", () => {
-    console.log("calculate1 test");
     expect(calculate1(data)).toBe(4512);
   });
 
-  test.only("getWinningBoardAndNumber when column is winner", () => {
+  test("getWinningBoardAndNumber when column is winner", () => {
     const data2 = {
       nums: [
         7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22,
@@ -81,13 +82,23 @@ describe.only("part 1", () => {
       ],
     };
     const { boardIndex, winningNumber } = getWinningBoardAndNumber(data2);
-    expect(boardIndex).toEqual(1); // the third board
+    expect(boardIndex).toEqual(1);
     expect(winningNumber).toEqual(24);
   });
 });
 
 describe("part 2", () => {
+  test("getLastWinningBoardAndNumber when row is winner", () => {
+    const { boardIndex, winningNumber } = getLastWinningBoardAndNumber(data);
+    expect(winningNumber).toEqual(13);
+    expect(boardIndex).toEqual(1);
+  });
+  test("winningBoardScore", () => {
+    expect(
+      winningBoardScore(data, getLastWinningBoardAndNumber).boardScore
+    ).toBe(148);
+  });
   test("calculate2", () => {
-    expect(calculate2(data)).toBe(230);
+    expect(calculate2(data)).toBe(1924);
   });
 });
