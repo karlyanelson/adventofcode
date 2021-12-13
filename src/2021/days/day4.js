@@ -40,57 +40,54 @@ export const getWinningBoardAndNumber = (input) => {
   let winningBoard;
   let winningNumber;
   let matchedColumns = {};
-  // let matchedRows = {};
+  let matchedRows = {};
   // console.log("----- getWinningBoardAndNumber RAN -----");
 
   for (const [numIndex, num] of nums.entries()) {
-    if (winningBoard) {
+    if (winningBoard || winningBoard === 0) {
       break;
     }
     for (const [boardIndex, board] of boards.entries()) {
-      if (winningBoard) {
+      if (winningBoard || winningBoard === 0) {
         break;
       }
 
       for (const [rowIndex, row] of board.entries()) {
-        if (winningBoard) {
+        if (winningBoard || winningBoard === 0) {
           break;
         }
 
-        let matchedRows = row.filter((x) => x === "matched");
+        matchedRows[rowIndex] = row.filter((x) => x === "matched");
 
-        if (matchedRows.length === row.length) {
+        if (matchedRows[rowIndex].length === row.length) {
           winningBoard = boardIndex;
           winningNumber = nums[numIndex - 1];
           break;
-        } else {
-          for (const [colIndex, col] of row.entries()) {
-            if (col === num) {
-              if (!matchedColumns[boardIndex]) {
-                matchedColumns[boardIndex] = {};
-              }
-              if (!matchedColumns[boardIndex][colIndex]) {
-                matchedColumns[boardIndex][colIndex] = [];
-              }
-              matchedColumns[boardIndex][colIndex].push("matched");
-              boards[boardIndex][rowIndex][colIndex] = "matched";
+        }
 
-              if (
-                matchedColumns[boardIndex][colIndex].length === board.length
-              ) {
-                // console.log(
-                //   "matchedColumns[boardIndex][colIndex].length === board.length"
-                // );
-                winningBoard = boardIndex;
-                winningNumber = nums[numIndex];
-                break;
-              }
+        for (const [colIndex, col] of row.entries()) {
+          if (col === num) {
+            if (!matchedColumns[boardIndex]) {
+              matchedColumns[boardIndex] = {};
+            }
+            if (!matchedColumns[boardIndex][colIndex]) {
+              matchedColumns[boardIndex][colIndex] = [];
+            }
+            matchedColumns[boardIndex][colIndex].push("matched");
+            boards[boardIndex][rowIndex][colIndex] = "matched";
+
+            if (matchedColumns[boardIndex][colIndex].length === board.length) {
+              winningBoard = boardIndex;
+              winningNumber = nums[numIndex];
+              break;
             }
           }
         }
       }
     }
   }
+
+  console.log({ winningBoard });
   return {
     boardIndex: winningBoard,
     winningNumber: winningNumber,
@@ -140,6 +137,7 @@ export const getLastWinningBoardAndNumber = (input) => {
   console.log({ dataInputCopy });
 
   // get the contents of the last board to win after matching numbers
+  console.log("getLastWinningBoardAndNumber PART 2------------");
   const { board, winningNumber } = getWinningBoardAndNumber(dataInputCopy);
 
   console.log({ winningBoards });
