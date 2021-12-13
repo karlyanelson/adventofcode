@@ -1,34 +1,4 @@
-// import { data } from "../data/4";
-
-const data = {
-  nums: [
-    7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18,
-    20, 8, 19, 3, 26, 1,
-  ],
-  boards: [
-    [
-      [22, 13, 17, 11, 0],
-      [8, 2, 23, 4, 24],
-      [21, 9, 14, 16, 7],
-      [6, 10, 3, 18, 5],
-      [1, 12, 20, 15, 19],
-    ],
-    [
-      [3, 15, 0, 2, 22],
-      [9, 18, 13, 17, 5],
-      [19, 8, 7, 25, 23],
-      [20, 11, 10, 24, 4],
-      [14, 21, 16, 12, 6],
-    ],
-    [
-      [14, 21, 17, 24, 4],
-      [10, 16, 15, 9, 19],
-      [18, 8, 23, 26, 20],
-      [22, 11, 13, 6, 5],
-      [2, 0, 12, 3, 7],
-    ],
-  ],
-};
+import { data } from "../data/4";
 
 // part 1
 
@@ -41,7 +11,6 @@ export const getWinningBoardAndNumber = (input) => {
   let winningNumber;
   let matchedColumns = {};
   let matchedRows = {};
-  // console.log("----- getWinningBoardAndNumber RAN -----");
 
   for (const [numIndex, num] of nums.entries()) {
     if (winningBoard || winningBoard === 0) {
@@ -87,7 +56,6 @@ export const getWinningBoardAndNumber = (input) => {
     }
   }
 
-  console.log({ winningBoard });
   return {
     boardIndex: winningBoard,
     winningNumber: winningNumber,
@@ -122,9 +90,10 @@ export const calculate1 = (input) => {
 export const getLastWinningBoardAndNumber = (input) => {
   let dataInputCopy = JSON.parse(JSON.stringify(input));
   let winningBoards = [];
+  let lastWinningBoard;
 
   // filter out boards that win
-  while (winningBoards.length < dataInputCopy.boards.length) {
+  while (winningBoards.length < input.boards.length - 1) {
     const { boardIndex } = getWinningBoardAndNumber(dataInputCopy);
 
     winningBoards.push(boardIndex);
@@ -132,19 +101,18 @@ export const getLastWinningBoardAndNumber = (input) => {
     dataInputCopy.boards.splice(boardIndex, 1);
   }
 
-  let winningBoard;
-
-  console.log({ dataInputCopy });
-
   // get the contents of the last board to win after matching numbers
-  console.log("getLastWinningBoardAndNumber PART 2------------");
   const { board, winningNumber } = getWinningBoardAndNumber(dataInputCopy);
 
-  console.log({ winningBoards });
-  console.log({ board });
+  for (const [index, item] of input.boards.entries()) {
+    if (!winningBoards.includes(index)) {
+      lastWinningBoard = index;
+      break;
+    }
+  }
 
   return {
-    boardIndex: winningBoard,
+    boardIndex: lastWinningBoard,
     winningNumber: winningNumber,
     board: board,
   };
