@@ -1,0 +1,60 @@
+// import { data } from "../data/5";
+
+const data = [
+  [
+    [0, 9],
+    [5, 9],
+  ],
+  [
+    [8, 0],
+    [0, 8],
+  ],
+  [
+    [9, 4],
+    [3, 4],
+  ],
+  [
+    [2, 2],
+    [2, 1],
+  ],
+  [
+    [7, 0],
+    [7, 4],
+  ],
+  [
+    [6, 4],
+    [2, 0],
+  ],
+  [
+    [0, 9],
+    [2, 9],
+  ],
+  [
+    [3, 4],
+    [1, 4],
+  ],
+  [
+    [0, 0],
+    [8, 8],
+  ],
+  [
+    [5, 5],
+    [8, 2],
+  ],
+];
+
+// part 1
+
+export const makeDiagram = (input) => {};
+
+export const calculate1 = (input) => {};
+
+// part 2
+
+export const calculate2 = (input) => {};
+
+// answers
+
+const answer = () => [calculate1(data), calculate2(data)];
+
+export default answer;

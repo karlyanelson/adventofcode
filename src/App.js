@@ -4,6 +4,7 @@ import day1 from "./2021/days/day1";
 import day2 from "./2021/days/day2";
 import day3 from "./2021/days/day3";
 import day4 from "./2021/days/day4";
+import day5 from "./2021/days/day5";
 import DayButton from "./DayButton";
 
 export function App() {
@@ -12,7 +13,7 @@ export function App() {
 
   const isEven = selectedDay % 2 === 0;
 
-  const answers = [day1, day2, day3, day4];
+  const answers = [day1, day2, day3, day4, day5];
 
   const noAnswers = new Array(25 - answers.length).fill(0);
 
