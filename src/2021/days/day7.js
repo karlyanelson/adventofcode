@@ -17,7 +17,7 @@ export const determineFuelAtPosition = (input, position) => {
   return fuel;
 };
 
-export const calculate1 = (input) => {
+const getLowestFuelAmount = (input, determineFuel) => {
   const sortLowToHigh = (a, b) => {
     return a - b;
   };
@@ -30,7 +30,7 @@ export const calculate1 = (input) => {
   let fuelOptions = [];
 
   for (let i = lowestNum; i <= highestNum; i++) {
-    fuelOptions.push(determineFuelAtPosition(input, i));
+    fuelOptions.push(determineFuel(input, i));
   }
 
   const sortedFuelOptions = fuelOptions.sort(sortLowToHigh);
@@ -38,9 +38,38 @@ export const calculate1 = (input) => {
   return sortedFuelOptions[0];
 };
 
+export const calculate1 = (input) => {
+  return getLowestFuelAmount(input, determineFuelAtPosition);
+};
+
 // part 2
 
-export const calculate2 = (input) => {};
+export const determineCostOfStep = (steps) => {
+  let cost = 0;
+
+  for (let i = 0; i <= steps; i++) {
+    cost += i;
+  }
+
+  return cost;
+};
+
+export const determineFuelAtPosition2 = (input, position) => {
+  let fuel = 0;
+
+  input.forEach((item) => {
+    if (position >= item) {
+      fuel += determineCostOfStep(position - item);
+    } else {
+      fuel += determineCostOfStep(item - position);
+    }
+  });
+  return fuel;
+};
+
+export const calculate2 = (input) => {
+  return getLowestFuelAmount(input, determineFuelAtPosition2);
+};
 
 // answers
 

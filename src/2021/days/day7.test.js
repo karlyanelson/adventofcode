@@ -1,6 +1,7 @@
 import {
   determineFuelAtPosition,
   calculate1,
+  determineCostOfStep,
   determineFuelAtPosition2,
   calculate2,
 } from "./day7";
@@ -19,6 +20,12 @@ describe("part 1", () => {
   });
 });
 describe("part 2", () => {
+  test("determineCostOfStep", () => {
+    expect(determineCostOfStep(1)).toBe(1);
+    expect(determineCostOfStep(2)).toBe(3);
+    expect(determineCostOfStep(4)).toBe(10);
+    expect(determineCostOfStep(11)).toBe(66);
+  });
   test("determineFuelAtPosition2", () => {
     expect(determineFuelAtPosition2(data, 5)).toBe(168);
     expect(determineFuelAtPosition2(data, 2)).toBe(206);
