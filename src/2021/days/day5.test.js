@@ -1,4 +1,4 @@
-import { makeDiagram, calculate1 } from "./day1";
+import { makeDiagram, calculate1, makeDiagram2, calculate2 } from "./day5";
 
 const data = [
   [
@@ -45,21 +45,34 @@ const data = [
 
 describe("part 1", () => {
   test("makeDiagram", () => {
-    const diagram = [
-      ".......1..",
-      "..1....1..",
-      "..1....1..",
-      ".......1..",
-      ".112111211",
-      "..........",
-      "..........",
-      "..........",
-      "..........",
-      "222111....",
-    ];
-    expect(makeDiagram(data)).toBe(diagram);
+    const diagram = makeDiagram(data);
+    expect(diagram[0][7]).toBe(1);
+    expect(diagram[1][2]).toBe(1);
+    expect(diagram[2][2]).toBe(1);
+    expect(diagram[4][3]).toBe(2);
+    expect(diagram[4][7]).toBe(2);
+    expect(diagram[9][0]).toBe(2);
+    expect(diagram[9][1]).toBe(2);
+    expect(diagram[9][2]).toBe(2);
   });
   test("calculate1", () => {
     expect(calculate1(data)).toBe(5);
   });
 });
+
+// describe("part 2", () => {
+//   test("makeDiagram2", () => {
+//     const diagram = makeDiagram2(data);
+//     expect(diagram[0][7]).toBe(1);
+//     expect(diagram[1][2]).toBe(1);
+//     expect(diagram[2][2]).toBe(1);
+//     expect(diagram[4][3]).toBe(2);
+//     expect(diagram[4][7]).toBe(2);
+//     expect(diagram[9][0]).toBe(2);
+//     expect(diagram[9][1]).toBe(2);
+//     expect(diagram[9][2]).toBe(2);
+//   });
+//   test("calculate2", () => {
+//     expect(calculate1(data)).toBe(5);
+//   });
+// });
