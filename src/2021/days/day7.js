@@ -8,11 +8,7 @@ export const determineFuelAtPosition = (input, position) => {
   let fuel = 0;
 
   input.forEach((item) => {
-    if (position >= item) {
-      fuel += position - item;
-    } else {
-      fuel += item - position;
-    }
+    fuel += Math.abs(position - item);
   });
   return fuel;
 };
@@ -44,25 +40,18 @@ export const calculate1 = (input) => {
 
 // part 2
 
-export const determineCostOfStep = (steps) => {
-  let cost = 0;
-
-  for (let i = 0; i <= steps; i++) {
-    cost += i;
-  }
-
-  return cost;
+export const determineCostOfStep = (a, b) => {
+  // formula for the triangular number sequence: n*(n+1)/2
+  // https://oeis.org/A000217
+  const difference = Math.abs(a - b);
+  return (difference * (difference + 1)) / 2;
 };
 
 export const determineFuelAtPosition2 = (input, position) => {
   let fuel = 0;
 
   input.forEach((item) => {
-    if (position >= item) {
-      fuel += determineCostOfStep(position - item);
-    } else {
-      fuel += determineCostOfStep(item - position);
-    }
+    fuel += determineCostOfStep(item, position);
   });
   return fuel;
 };
