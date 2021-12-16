@@ -1,11 +1,11 @@
-import { data } from "../data/6";
+// import { data } from "../data/6";
 
-// const data = [3, 4, 3, 1, 2];
+const data = [3, 4, 3, 1, 2];
 
 // part 1
 
 export const calculate1 = (input, days) => {
-  // THIS DOESN'T SCALE WELL B/C IS O(log2 n)
+  // THIS DOESN'T SCALE WELL B/C IS O(n^2)
 
   let arr = Array.from(input);
 
@@ -26,21 +26,40 @@ export const calculate1 = (input, days) => {
 // part 2
 
 export const calculate2 = (input, days) => {
-  //// Full disclosure got this solution from the adventofcode subreddit (https://github.com/sk1talets/advent-of-code/blob/main/2021/6/script.2.js)
-  //// scales better because is O(log n)
+  //// Full disclosure got this solution from the adventofcode subreddit
+  // (https://github.com/sk1talets/advent-of-code/blob/main/2021/6/script.2.js)
 
-  let arr = Array.from(input);
-  const counts = Array(9).fill(0);
+  //// scales better because is O(n)
 
-  arr.forEach((n) => (counts[n] += 1));
+  let fishes = Array.from(input);
 
+  // the only possible timer options are 0 - 8
+  const fishesAtEachInternalTimerValue = Array(9).fill(0);
+
+  // count the number of fish at every timer point for the initial day
+  fishes.forEach((fishInternalTimerValue) => {
+    fishesAtEachInternalTimerValue[fishInternalTimerValue] += 1;
+  });
+
+  //
   for (let i = 0; i < days; i++) {
-    const newCount = counts.shift();
-    counts[6] += newCount;
-    counts.push(newCount);
+    // on each day,
+    // remove the fish at counter time 0
+    const numberOfFishThatWillReproduce =
+      fishesAtEachInternalTimerValue.shift();
+
+    // move the fish at counter time 0 to counter time 6
+    fishesAtEachInternalTimerValue[6] += numberOfFishThatWillReproduce;
+
+    // push the number of fish that were counter time 0 to the end of the array
+    // because they've generated new fish
+    fishesAtEachInternalTimerValue.push(numberOfFishThatWillReproduce);
   }
 
-  return counts.reduce((count, total) => count + total);
+  // sum all the fish at each counter point together
+  return fishesAtEachInternalTimerValue.reduce(
+    (total, fishCount) => total + fishCount
+  );
 };
 
 // answers
