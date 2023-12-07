@@ -1,12 +1,6 @@
 import "./styles.css";
 import { useState } from "react";
-import day1 from "./2021/days/day1";
-import day2 from "./2021/days/day2";
-import day3 from "./2021/days/day3";
-import day4 from "./2021/days/day4";
-import day5 from "./2021/days/day5";
-import day6 from "./2021/days/day6";
-import day7 from "./2021/days/day7";
+import day1 from "./2023/days/day1";
 import DayButton from "./DayButton";
 
 export function App() {
@@ -15,7 +9,7 @@ export function App() {
 
   const isEven = selectedDay % 2 === 0;
 
-  const answers = [day1, day2, day3, day4, day5, day6, day7];
+  const answers = [day1];
 
   const noAnswers = new Array(25 - answers.length).fill(0);
 
@@ -27,7 +21,7 @@ export function App() {
 
   return (
     <div className="App">
-      <h1>Advent of Code 2021</h1>
+      <h1>Advent of Code 2023</h1>
 
       <div aria-live="polite" aria-atomic="true">
         {selectedDay && (
