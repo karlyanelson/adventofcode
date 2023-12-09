@@ -104,3 +104,16 @@ img {
 .year-selector {
   font-size: 2rem;
 }
+
+.github-link {
+  display: inline-block;
+  padding: 1rem;
+  border-radius: .25rem;
+  background: white;
+  color: green;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: red;
+}

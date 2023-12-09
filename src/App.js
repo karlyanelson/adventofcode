@@ -27,6 +27,10 @@ export function App() {
         </select>
       </h1>
       <View year={year} />
+
+      <p>
+        <a className="github-link" href="https://github.com/karlyanelson/adventofcode" target="_blank" rel="noreferrer">View on Github</a>
+      </p>
     </div>
   );
 }
