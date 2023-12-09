@@ -102,6 +102,5 @@ img {
 }
 
 .year-selector {
-  color: black !important;
-  margin-bottom: 1rem;
+  font-size: 2rem;
 }
