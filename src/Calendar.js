@@ -36,7 +36,7 @@ export function Calendar({ answers }) {
             <div>
               {answer.map((ans, index) => (
                 <p key={`answers_${index}`}>
-                  <span>Part&nbsp;{index + 1}:<code>{ans || "TBD"}</code></span>
+                  <span>Part&nbsp;{index + 1}:<code>{ans ? JSON.stringify(ans) : "TBD"}</code></span>
                 </p>
               ))}
             </div>
