@@ -3,35 +3,35 @@ import { data } from "../data/2";
 // part 1
 
 export const horizontalPos = (arr) => {
-    let posX = 0;
+  let posX = 0;
 
-    for (const item of arr) {
-        if (item.direction === "forward") {
-            posX = posX + item.amount;
-        }
+  for (const item of arr) {
+    if (item.direction === "forward") {
+      posX = posX + item.amount;
     }
+  }
 
-    return posX;
+  return posX;
 };
 
 export const depth = (arr) => {
-    let posY = 0;
+  let posY = 0;
 
-    for (const item of arr) {
-        if (item.direction === "down") {
-            posY = posY + item.amount;
-        }
-
-        if (item.direction === "up") {
-            posY = posY - item.amount;
-        }
+  for (const item of arr) {
+    if (item.direction === "down") {
+      posY = posY + item.amount;
     }
 
-    return posY;
+    if (item.direction === "up") {
+      posY = posY - item.amount;
+    }
+  }
+
+  return posY;
 };
 
 export const calculate1 = (arr) => {
-    return horizontalPos(arr) * depth(arr);
+  return horizontalPos(arr) * depth(arr);
 };
 
 // part 2
@@ -43,26 +43,26 @@ export const calculate1 = (arr) => {
 // It increases your depth by your aim multiplied by X.
 
 export const calculate2 = (arr) => {
-    let aim = 0;
-    let posY = 0;
-    let posX = 0;
+  let aim = 0;
+  let posY = 0;
+  let posX = 0;
 
-    for (const item of arr) {
-        if (item.direction === "down") {
-            aim = aim + item.amount;
-        }
-
-        if (item.direction === "up") {
-            aim = aim - item.amount;
-        }
-
-        if (item.direction === "forward") {
-            posX = posX + item.amount;
-            posY = posY + aim * item.amount;
-        }
+  for (const item of arr) {
+    if (item.direction === "down") {
+      aim = aim + item.amount;
     }
 
-    return posX * posY;
+    if (item.direction === "up") {
+      aim = aim - item.amount;
+    }
+
+    if (item.direction === "forward") {
+      posX = posX + item.amount;
+      posY = posY + aim * item.amount;
+    }
+  }
+
+  return posX * posY;
 };
 
 const answer = () => [calculate1(data), calculate2(data)];
