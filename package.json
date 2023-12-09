@@ -9,7 +9,8 @@
     "start": "parcel",
     "build": "parcel build",
     "clean": "rm -rf dist && rm -rf .parcel-cache",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
     "parcel": "^2.10.3",
     "process": "^0.11.10"
   },

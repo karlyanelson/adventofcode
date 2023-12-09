@@ -1,8 +1,8 @@
 import { data } from "../data/3";
 
 const binaryToDecimal = (binary) => {
-  const decimal = parseInt(binary, 2);
-  return decimal;
+    const decimal = parseInt(binary, 2);
+    return decimal;
 };
 
 // part 1
@@ -24,71 +24,71 @@ const binaryToDecimal = (binary) => {
 // gammaBinaryString = "12345"
 
 export const getBinaryArray = (arr, determineBinary) => {
-  const modifiedArr = arr.map((x) => x.split(""));
-  let bits = {};
-  modifiedArr.forEach((item) => {
-    item.forEach((num, index) => {
-      if (bits[index]) {
-        const arrayItems = bits[index];
-        bits[index] = [...arrayItems, num];
-      } else {
-        bits[index] = [num];
-      }
+    const modifiedArr = arr.map((x) => x.split(""));
+    let bits = {};
+    modifiedArr.forEach((item) => {
+        item.forEach((num, index) => {
+            if (bits[index]) {
+                const arrayItems = bits[index];
+                bits[index] = [...arrayItems, num];
+            } else {
+                bits[index] = [num];
+            }
+        });
     });
-  });
-  const bitsArray = Object.values(bits);
-  let binary = bitsArray.map((item) => determineBinary(item)).join("");
-  return binary;
+    const bitsArray = Object.values(bits);
+    let binary = bitsArray.map((item) => determineBinary(item)).join("");
+    return binary;
 };
 
 const mostCommonNumber = (arr) => {
-  let zeroes = [];
-  let ones = [];
+    let zeroes = [];
+    let ones = [];
 
-  arr.forEach((item) => {
-    item === "0" ? zeroes.push("0") : ones.push("1");
-  });
+    arr.forEach((item) => {
+        item === "0" ? zeroes.push("0") : ones.push("1");
+    });
 
-  if (zeroes.length > ones.length) {
-    return "0";
-  } else {
-    return "1";
-  }
+    if (zeroes.length > ones.length) {
+        return "0";
+    } else {
+        return "1";
+    }
 };
 
 const leastCommonNumber = (arr) => {
-  let zeroes = [];
-  let ones = [];
+    let zeroes = [];
+    let ones = [];
 
-  arr.forEach((item) => {
-    item === "0" ? zeroes.push("0") : ones.push("1");
-  });
+    arr.forEach((item) => {
+        item === "0" ? zeroes.push("0") : ones.push("1");
+    });
 
-  if (zeroes.length > ones.length) {
-    return "1";
-  } else {
-    return "0";
-  }
+    if (zeroes.length > ones.length) {
+        return "1";
+    } else {
+        return "0";
+    }
 };
 
 export const gammaRateBinary = (arr) => {
-  return getBinaryArray(arr, mostCommonNumber);
+    return getBinaryArray(arr, mostCommonNumber);
 };
 
 export const epsilonRateBinary = (arr) => {
-  return getBinaryArray(arr, leastCommonNumber);
+    return getBinaryArray(arr, leastCommonNumber);
 };
 
 export const gammaRate = (arr) => {
-  return binaryToDecimal(gammaRateBinary(arr));
+    return binaryToDecimal(gammaRateBinary(arr));
 };
 
 export const epsilonRate = (arr) => {
-  return binaryToDecimal(epsilonRateBinary(arr));
+    return binaryToDecimal(epsilonRateBinary(arr));
 };
 
 export const calculate1 = (arr) => {
-  return gammaRate(arr) * epsilonRate(arr);
+    return gammaRate(arr) * epsilonRate(arr);
 };
 
 // part 2
@@ -115,40 +115,40 @@ export const calculate1 = (arr) => {
 // ];
 
 const filterBinaryArray = (arr, determineBinary) => {
-  const bits = new Array(arr[0].length).fill(0).map((x, index) => (x = index));
+    const bits = new Array(arr[0].length).fill(0).map((x, index) => (x = index));
 
-  let filteredArray = arr;
+    let filteredArray = arr;
 
-  for (const bit of bits) {
-    if (filteredArray.length === 1) {
-      break;
+    for (const bit of bits) {
+        if (filteredArray.length === 1) {
+            break;
+        }
+        let binaryPattern = getBinaryArray(filteredArray, determineBinary);
+
+        filteredArray = filteredArray.filter((item) => {
+            return item[bit] === binaryPattern[bit];
+        });
     }
-    let binaryPattern = getBinaryArray(filteredArray, determineBinary);
 
-    filteredArray = filteredArray.filter((item) => {
-      return item[bit] === binaryPattern[bit];
-    });
-  }
-
-  return filteredArray.toString();
+    return filteredArray.toString();
 };
 export const oxygenBinary = (arr) => {
-  return filterBinaryArray(arr, mostCommonNumber);
+    return filterBinaryArray(arr, mostCommonNumber);
 };
 
 export const co2Binary = (arr) => {
-  return filterBinaryArray(arr, leastCommonNumber);
+    return filterBinaryArray(arr, leastCommonNumber);
 };
 
 export const oxygenRate = (arr) => {
-  return binaryToDecimal(oxygenBinary(arr));
+    return binaryToDecimal(oxygenBinary(arr));
 };
 export const co2Rate = (arr) => {
-  return binaryToDecimal(co2Binary(arr));
+    return binaryToDecimal(co2Binary(arr));
 };
 
 export const calculate2 = (arr) => {
-  return oxygenRate(arr) * co2Rate(arr);
+    return oxygenRate(arr) * co2Rate(arr);
 };
 
 // answers
