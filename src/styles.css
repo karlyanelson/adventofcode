@@ -100,3 +100,8 @@ img {
   border-radius: 0.25rem;
   display: inline-block;
 }
+
+.year-selector {
+  color: black !important;
+  margin-bottom: 1rem;
+}

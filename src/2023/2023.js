@@ -1,4 +1,5 @@
-import { Calendar } from "../Calendar'";
+import React from "react";
+import { Calendar } from "../Calendar";
 import day1 from "./days/day1";
 
 export function Year2023() {

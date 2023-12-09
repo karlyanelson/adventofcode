@@ -6,6 +6,7 @@ import day5 from "./days/day5";
 import day6 from "./days/day6";
 import day7 from "./days/day7";
 import { Calendar } from "../Calendar";
+import React from "react";
 
 export function Year2021() {
   const answers = [day1, day2, day3, day4, day5, day6, day7];
