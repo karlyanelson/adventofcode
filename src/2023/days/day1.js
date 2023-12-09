@@ -31,13 +31,10 @@ const digits = [
 ];
 
 export const replaceStringWithNumbers = (str) => {
-  console.log(str);
   let updatedStr = str;
   digits.forEach(({label, value}) => {
     updatedStr = updatedStr.replaceAll(`${label}`, `${label}${value}${label}`);
   });
-  console.log(updatedStr);
-  console.log("--------");
   return updatedStr;
 };
 
