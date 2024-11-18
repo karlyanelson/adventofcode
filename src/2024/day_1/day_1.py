@@ -1,2 +1,4 @@
 def hello_world_day_1_thing():
-    print('hello world day 1')
+    msg = 'hello world day 1'
+    print(msg)
+    return msg

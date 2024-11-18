@@ -2,5 +2,8 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  },
+  "python.testing.pytestArgs": ["src"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }
