@@ -42,17 +42,23 @@ def get_day_1_data(input = None):
 
     return left_sorted, right_sorted
 
-def day_1_part_1(left_list:list, right_list:list):
+def day_1_part_1(left:list, right:list):
     diffs = []
 
-    for i in range(len(left_list)):
-        diff = abs(left_list[i] - right_list[i])
+    for i in range(len(left)):
+        diff = abs(left[i] - right[i])
         diffs.append(diff)
 
     return sum(diffs)
 
-def day_1_part_2(left_list:list, right_list:list):
-    left_list_tranform = list(map(int, left_list))
-    right_list_tranform = list(map(int, right_list))
+def day_1_part_2(left:list, right:list):
+    #This time, you'll need to figure out exactly how often each number from the left list 
+    # appears in the right list. Calculate a total similarity score by adding up each number in the left list 
+    # after multiplying it by the number of times that number appears in the right list.
 
-    #This time, you'll need to figure out exactly how often each number from the left list appears in the right list. Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list.
+    similarity = 0
+
+    for i in range(len(left)):
+        similarity += left[i] * right.count(left[i])
+
+    return similarity
