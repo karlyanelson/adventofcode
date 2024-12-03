@@ -13,7 +13,7 @@ from aocp import (
     DictParser,
 )
 
-def get_day_1_data(input = None):
+def parse_input(input = None):
     raw_data = ''
 
     if input:
@@ -25,6 +25,13 @@ def get_day_1_data(input = None):
     parser = ListParser()   
 
     parsed = parser.parse(raw_data) 
+
+    print("Parsed data from input")
+
+    return parsed
+
+def get_data(input = None):
+    parsed = parse_input(input) 
 
     left = []  
     right = []
@@ -40,9 +47,11 @@ def get_day_1_data(input = None):
     left_sorted = sorted(left_list)
     right_sorted = sorted(right_list) 
 
+    print("Formatted data for this day")
+
     return left_sorted, right_sorted
 
-def day_1_part_1(left:list, right:list):
+def part_1(left:list, right:list):
     diffs = []
 
     for i in range(len(left)):
@@ -51,7 +60,7 @@ def day_1_part_1(left:list, right:list):
 
     return sum(diffs)
 
-def day_1_part_2(left:list, right:list):
+def part_2(left:list, right:list):
     #This time, you'll need to figure out exactly how often each number from the left list 
     # appears in the right list. Calculate a total similarity score by adding up each number in the left list 
     # after multiplying it by the number of times that number appears in the right list.
