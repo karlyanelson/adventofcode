@@ -12,9 +12,9 @@ input = """3   4
 
 left, right = get_data(input)
 
-def test_day_1_part_1():
+def test_part_1():
     assert answer_part_1(left, right) == 11
 
 
-def test_day_1_part_2():
+def test_part_2():
     assert answer_part_2(left, right) == 31

@@ -13,13 +13,13 @@ from aocp import (
     DictParser,
 )
 
-def parse_input(input = None):
+def parse_input(folder_name:str, input = None):
     raw_data = ''
 
     if input:
         raw_data = input
     else:
-        with open('input.txt', 'r') as file:
+        with open(f'../{folder_name}/input.txt', 'r') as file:
             raw_data = file.read()  
 
     parser = ListParser()   
