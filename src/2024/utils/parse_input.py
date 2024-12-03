@@ -13,7 +13,7 @@ from aocp import (
     DictParser,
 )
 
-def parse_input(folder_name:str, input = None):
+def parse_input(folder_name:str, input = None) -> list[str]:
     raw_data = ''
 
     if input:
