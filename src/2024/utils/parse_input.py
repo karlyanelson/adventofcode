@@ -24,4 +24,8 @@ def parse_input(input = None):
 
     parser = ListParser()   
 
-    return parser.parse(raw_data) 
+    parsed = parser.parse(raw_data) 
+
+    print("Parsed data from input")
+
+    return parsed

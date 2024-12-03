@@ -1,4 +1,6 @@
-from day_1.answers import get_data, part_1, part_2
+from day_1.data import get_data
+from day_1.part_1 import answer_part_1
+from day_1.part_2 import answer_part_2
 
 
 input = """3   4
@@ -11,8 +13,8 @@ input = """3   4
 left, right = get_data(input)
 
 def test_day_1_part_1():
-    assert part_1(left, right) == 11
+    assert answer_part_1(left, right) == 11
 
 
 def test_day_1_part_2():
-    assert part_2(left, right) == 31
+    assert answer_part_2(left, right) == 31
