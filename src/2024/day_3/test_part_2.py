@@ -15,6 +15,7 @@ def test_decode_corrupted_memory_case_2():
 
 
 def test_decode_corrupted_memory_case_3():
+    # Need to handle new lines
     input = """^don't()*mul(884,335)]@@why()$do()~#mul(786,141)
 where()}/what(611,646)!mul(470,537)}"""
     assert decode_corrupted_memory(input) == [[786,141], [470,537]]
