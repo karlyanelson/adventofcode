@@ -1,39 +1,30 @@
-def _check_if_safe(report: list[int]) -> bool:
-    # The levels are either all increasing or all decreasing.
-    # Any two adjacent levels differ by at least one and at most three.
+import re
 
-    increasing = all(1 <= report[i] - report[i - 1] <= 3 for i in range(1, len(report)))
-    decreasing = all(1 <= report[i - 1] - report[i] <= 3 for i in range(1, len(report)))
-    return increasing or decreasing
+def decode_corrupted_memory(string) -> list[list[int]]:
+    # For a string like xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
+    # select everything from beginning until don't()
+    # and everything from a do() until either another don't() or the end of the string
 
-def check_if_safe_with_problem_dampener(report: list[int]) -> bool:
-    # Now, the same rules apply as before, 
-    # except if removing a single level from an unsafe report would make it safe, 
-    # the report instead counts as safe.
+    enabled_instructions_pattern = re.compile(r'(?<=^)(.*?)(?=don\'t\()')
+    enabled_instructions_list = enabled_instructions_pattern.findall(string)
 
-    result = False
-    initial_safe_check = _check_if_safe(report)
-    if initial_safe_check:
-        result = True
-    else:
-        for i in range(len(report)):
-            temp = report.copy()
-            temp.pop(i)
-            is_safe = _check_if_safe(temp)
-            if is_safe:
-                result = True
-                break
-    
+    enabled_instructions = enabled_instructions_list
+    enabled_instructions = ''.join(enabled_instructions_list)
+
+    print(enabled_instructions)
+
+    # then grab the numbers
+    valid_numbers_pattern = re.compile(r'mul(?<!\?)\((\d{1,3}),(\d{1,3})\)')
+    valid_numbers = valid_numbers_pattern.findall(enabled_instructions)
+    result = [[int(x), int(y)] for x, y in valid_numbers]
     return result
 
+def answer_part_2(string):
+    memory = decode_corrupted_memory(string)
+    total = 0
 
-def answer_part_2(reports: list[list[int]]):
-    safe_reports = 0
-
-    for report in reports:
-        is_safe = check_if_safe_with_problem_dampener(report)
-        if is_safe:
-            safe_reports += 1
+    for x, y in memory:
+        total += x * y
     
-    return safe_reports
+    return total
 

@@ -1,6 +1,5 @@
 from day_2.data import get_data
 from day_2.part_1 import answer_part_1, check_if_safe
-from day_2.part_2 import answer_part_2
 
 
 input = """7 6 4 2 1
@@ -44,6 +43,3 @@ def test_check_is_safe_case_8():
 
 def test_part_1():
     assert answer_part_1(data) == 2
-
-# def test_part_2():
-#     assert answer_part_2(data) == 31
