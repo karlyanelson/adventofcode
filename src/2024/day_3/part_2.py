@@ -4,12 +4,14 @@ def decode_corrupted_memory(string) -> list[list[int]]:
     # For a string like xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
     # select everything from beginning until don't()
     # and everything from a do() until either another don't() or the end of the string
+    
+    pattern = re.compile(r'(?<=^)(.*?)(?=don\'t\()|(?<=do\()(.*?)(?=don\'t\()|(?<=do\()(.*)')
+    matches = pattern.findall(string)
 
-    enabled_instructions_pattern = re.compile(r'(?<=^)(.*?)(?=don\'t\()')
-    enabled_instructions_list = enabled_instructions_pattern.findall(string)
+    for match in matches:
+        print(f"Match: {match}")
 
-    enabled_instructions = enabled_instructions_list
-    enabled_instructions = ''.join(enabled_instructions_list)
+    enabled_instructions = ''.join(''.join(match) for match in matches)
 
     print(enabled_instructions)
 
