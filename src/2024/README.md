@@ -23,3 +23,9 @@ https://github.com/miguel-bm/advent-of-code-parsers/tree/main
 ```
 pip install aocp
 ```
+
+## Numpy for fancy number things
+
+```
+pip install numpy
+```
