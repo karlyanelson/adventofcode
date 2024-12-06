@@ -25,4 +25,8 @@ def get_data(input = None):
 
     print(f"matrix: {matrix}")
 
-    return rows, matrix
+    diagonal = matrix.diagonal()
+
+    print(f"diagonal: {diagonal}")
+
+    return rows, matrix, diagonal
