@@ -19,7 +19,7 @@ def get_data(input = None):
         data.append(new_row)
 
 
-    print(f"Data: {data}")
+    # print(f"Data: {data}")
 
     matrix = np.array(data)
 
